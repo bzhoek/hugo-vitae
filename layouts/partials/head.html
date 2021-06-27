@@ -37,6 +37,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ relURL "/css/normalize.css" }}" />
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ relURL "/css/main.css" }}" />
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ relURL "/css/all.css" }}" />
+	{{ $style := resources.Get "sass/play.sass" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+	<link rel="stylesheet" href="{{ $style.Permalink }}">
 	<!-- Add math typesetting with KaTeX if math is set -->
 	{{- if or .Params.math .Site.Params.math -}}
 	<link rel="stylesheet" href="{{ relURL "/css/katex.min.css" }}" crossorigin="anonymous">
