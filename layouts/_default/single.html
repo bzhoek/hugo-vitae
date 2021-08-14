@@ -22,6 +22,12 @@
 	{{ if ne .Date.Year 1 }}
 		<div class="meta">
 			{{ if not .Params.nodate }}
+			<div class="image">
+				<img src="{{ relURL .Params.file }}.jpg" {{ if isset .Params "imagetext" }}alt="{{ .Params.imagetext }}"{{
+				end
+				}}>
+			</div>
+
 			<div class="date">
 				<span class="day">{{ dateFormat "02" .Date }}</span>
 				<span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
@@ -31,6 +37,7 @@
 		{{ end }}
 		<div class="matter">
 			<h1 class="title">{{ .Title }}</h1>
+			<button class="play" data-src="/{{.Params.file}}.mp3">Play</button>
 		</div>
 	</div>
 	<div class="markdown">
@@ -81,4 +88,16 @@
 	{{- end -}}
 	{{- end -}}
 </div>
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		let player = document.getElementById('player')
+		Array.from(document.getElementsByClassName('play')).forEach(el => {
+			el.addEventListener('click', e => {
+				player.src = el.getAttribute('data-src')
+				player.play()
+			})
+		})
+	})
+</script>
+<audio id="player" controls/>
 {{ end }}
