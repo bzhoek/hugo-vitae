@@ -88,17 +88,5 @@
 	{{- end -}}
 	{{- end -}}
 </div>
-<script>
-	window.addEventListener('DOMContentLoaded', () => {
-		let player = document.getElementById('player')
-		Array.from(document.getElementsByClassName('play')).forEach(el => {
-			el.addEventListener('click', e => {
-				player.style.display = 'block'
-				player.src = el.getAttribute('data-src')
-				player.play()
-			})
-		})
-	})
-</script>
-<audio id="player" controls/>
+{{ partial "player.html" . }}
 {{ end }}
