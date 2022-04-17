@@ -48,10 +48,22 @@ img
       color: grey
 
 .post
-  .play
-    width: 60px
-    margin-right: 8px
+  .image
+    position: relative
     background-image: url(/play.svg)
     background-repeat: no-repeat
-  .playing
-    background-image: url(/playing.svg)
+
+    .play
+      position: absolute
+      top: 0
+      left: 0
+      width: 60px
+      height: 60px
+      margin-right: 8px
+      background-image: url(/play.svg)
+      background-repeat: no-repeat
+      background-size: 48px 48px
+      background-position: center
+
+    .playing
+      background-image: url(/playing.svg)
